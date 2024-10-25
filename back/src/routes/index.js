@@ -1,10 +1,8 @@
 const { Router } = require("express");
-const driversRouter = require('./drivers')
-const teamsRouter = require('./teams')
+const cryptoRouter = require('./crypto')
 
 const router = Router();
 
-router.use("/drivers", driversRouter)
-router.use("/teams", teamsRouter)
+router.use("/index", cryptoRouter)
 
 module.exports = router;
