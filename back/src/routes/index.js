@@ -3,6 +3,6 @@ const cryptoRouter = require('./crypto')
 
 const router = Router();
 
-router.use("/index", cryptoRouter)
+router.use("/", cryptoRouter)
 
 module.exports = router;

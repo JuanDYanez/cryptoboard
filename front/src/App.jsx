@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import SideBar from './components/sidebar/sidebar.component'
+import DetailView from './components/detailView/detailView.component'
+import CardsContainer from './components/cardsContainer/CardsContainer.component'
+import CryptoCard from './components/card/card.component'
 
 function App() {
 
   return (
     <>
       <SideBar></SideBar>
+      <DetailView></DetailView>
+      <CardsContainer></CardsContainer>
+      <CryptoCard></CryptoCard>
     </>
   )
 }

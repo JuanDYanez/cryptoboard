@@ -2,16 +2,20 @@ const axios = require('axios');
 require("dotenv").config();
 
 const {API_KEY} = process.env;
-const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=50&x_cg_demo_api_key=${API_KEY}`;
-// const options = {method: 'GET', headers: {accept: 'application/json'}};
+const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x_cg_demo_api_key=${API_KEY}`;
 
+// Controller para pedir las primeras 50 coins
 const controllerGetAllCryptos = async () => {
+  const options = {
+    method: 'GET',
+    url: url+'&per_page=50',
+    header: {accept: 'application/json'}
+  }
+
   try {
-    const res = await axios.get(url);
-    const allCryptos = res.data;
+    const response = await axios.request(options)
     
-    console.log(allCryptos);
-    
+    return response.data;  
     // .data.map((driver) => {
 
     //   const parseImg = () => {
@@ -59,7 +63,6 @@ const controllerGetAllCryptos = async () => {
     //   };
     // });
 
-    return allCryptos;
   } catch (error) {
     console.error('error:'+ error);
     
@@ -67,22 +70,42 @@ const controllerGetAllCryptos = async () => {
   }
 };
 
-// // Controller para requerir un piloto por ID (API || BD)
-// const controllerGetDriverById = async (id) => {
+// Controller para pedir el detalle de una coin por ID
+const controllerGetCryptoById = async (id) => {
+
+  try {
+    const allCryptos = await controllerGetAllCryptos(); 
+
+    const cryptosFound = await allCryptos.find(crypto => crypto.id == id || crypto.symbol == id)
+
+    if (cryptosFound.length === 0) {
+      console.error("No se encontraron cryptos");
+    }
+
+    return cryptosFound
+  } catch (error) {
+    throw new Error("No se encontraron cryptos");
+  }
   
-//   try {
-//     const allDrivers = await controllerGetAllDrivers();
+};
 
-//     const driverFound = await allDrivers.find(driver => driver.id == id)
-
-//     return driverFound;
+//Controller para pedir el detalle de una crypto por nombre
+const controllerGetCryptoByName = async (name) => {
+  
+  try {
+    const allCryptos = await controllerGetAllCryptos();
     
-//   } catch (error) {
-//     throw new Error("Error al consultar el piloto requerido");
-//   }
-  
-// };
+    console.log("Nombre a buscar:", name);
+       
+    const filteredCryptos = allCryptos.filter(crypto => 
+      crypto.name.toLowerCase().includes(name.toLowerCase())
+    )
 
+    return filteredCryptos
+  } catch (error) {
+    throw new Error (error)
+  }
+}
 // const controllerGetFlagByDriver = async (id) => {
 //   try {
 //     const driverNationality = (await controllerGetDriverById(id)).nationality;
@@ -103,22 +126,7 @@ const controllerGetAllCryptos = async () => {
 // };
 
 
-// const controllerGetDriverByName = async (name) => {
-  
-//   try {
-//     const allDrivers = await controllerGetAllDrivers();
-    
-//     const filteredDrivers = allDrivers.filter(driver => {
-//       const filterByForename = driver.forename.toLowerCase().includes(name.toLowerCase())
-//       const filterBySurname = driver.surname.toLowerCase().includes(name.toLowerCase())
 
-//       return filterByForename || filterBySurname;
-//     })
-
-//     return filteredDrivers.slice(0,15)
-//   } catch (error) {
-//     throw new Error (error)
-//   }
 
 
 
@@ -166,4 +174,6 @@ const controllerGetAllCryptos = async () => {
 
 module.exports = {
   controllerGetAllCryptos,
+  controllerGetCryptoById,
+  controllerGetCryptoByName
 };
