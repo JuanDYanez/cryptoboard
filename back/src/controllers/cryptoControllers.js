@@ -1,6 +1,8 @@
 const axios = require('axios');
 require("dotenv").config();
 
+const tuneCoin = require("../../api/tuneCoin.json");
+
 const {API_KEY} = process.env;
 const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x_cg_demo_api_key=${API_KEY}`;
 
@@ -12,8 +14,20 @@ const controllerGetAllCryptos = async () => {
     header: {accept: 'application/json'}
   }
 
+  // Script para generar variaciones aleatorias para el `current_price` y `market_cap` de la nueva Tune Coin
+  setInterval(() => {
+    
+    const priceChange = (Math.random() * 2 - 1) * 100;
+    const marketCapChange = (Math.random() * 2 - 1) * 10000000;
+  
+    tuneCoin.current_price = Math.max(1, tuneCoin.current_price + priceChange);
+    tuneCoin.market_cap = Math.max(1, tuneCoin.market_cap + marketCapChange);
+  }, 30000);
+
   try {
     const response = await axios.request(options)
+    
+    response.data.unshift(tuneCoin)
     
     return response.data;  
     // .data.map((driver) => {
@@ -94,8 +108,6 @@ const controllerGetCryptoByName = async (name) => {
   
   try {
     const allCryptos = await controllerGetAllCryptos();
-    
-    console.log("Nombre a buscar:", name);
        
     const filteredCryptos = allCryptos.filter(crypto => 
       crypto.name.toLowerCase().includes(name.toLowerCase())
@@ -124,53 +136,6 @@ const controllerGetCryptoByName = async (name) => {
 //     throw new Error(error.message);
 //   }
 // };
-
-
-
-
-
-
-
-// const controllerGetAllNationalities = async () => {
-  
-//   try {
-
-//     const { data } = await axios.get("https://restcountries.com/v3.1/all");
-
-//     const allNationalities = data.map((country) => country.demonyms?.eng.m);
-
-//     const uniqueNationalities = [...new Set(allNationalities)].sort((a, b) => {
-//       return a.localeCompare(b)
-//     });
-
-//     return uniqueNationalities;
-
-//   } catch (error) {
-//     throw new Error(error.message);    
-
-//   }
-// };
-// const controllerGetLocalNationalities = async () => {
-  
-//   try {
-
-//     const { data } = await axios.get("http://localhost:3001/drivers");
-
-//     const allNationalities = data.map((driver) => driver.nationality);
-
-//     const uniqueNationalities = [...new Set(allNationalities)].sort((a, b) => {
-//       return a.localeCompare(b)
-//     });
-
-//     return uniqueNationalities;
-
-//   } catch (error) {
-//     throw new Error(error.message);    
-
-//   }
-
-// };
-
 
 module.exports = {
   controllerGetAllCryptos,

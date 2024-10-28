@@ -1,0 +1,9 @@
+const GET_ALL_CRYPTOS = 'GET_ALL_CRYPTOS'
+const GET_BY_ID = 'GET_BY_ID'
+const GET_BY_NAME = 'GET_BY_NAME'
+
+export {
+  GET_ALL_CRYPTOS,
+  GET_BY_ID,
+  GET_BY_NAME
+}

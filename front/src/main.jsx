@@ -8,10 +8,10 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <Provider> */}
+    <Provider store={store}>
       <BrowserRouter basename='/'>
         <App />
       </BrowserRouter>
-    {/* </Provider> */}
+    </Provider>
   </StrictMode>,
 )

@@ -1,1 +1,13 @@
-function 
+.sidebarContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: white;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  margin: 30px 10px;
+  width: 200px;
+}

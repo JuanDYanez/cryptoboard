@@ -1,9 +1,9 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
 import SideBar from './components/sidebar/sidebar.component'
 import DetailView from './components/detailView/detailView.component'
 import CardsContainer from './components/cardsContainer/CardsContainer.component'
-import CryptoCard from './components/card/card.component'
+import Pagination from './components/pagination/pagination.component'
 
 function App() {
 
@@ -11,8 +11,8 @@ function App() {
     <>
       <SideBar></SideBar>
       <DetailView></DetailView>
-      <CardsContainer></CardsContainer>
-      <CryptoCard></CryptoCard>
+      <CardsContainer/>
+      <Pagination></Pagination>
     </>
   )
 }
