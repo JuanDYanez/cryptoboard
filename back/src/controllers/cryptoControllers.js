@@ -10,7 +10,7 @@ const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x_cg
 const controllerGetAllCryptos = async () => {
   const options = {
     method: 'GET',
-    url: url+'&per_page=50',
+    url: url+'&per_page=49',
     header: {accept: 'application/json'}
   }
 

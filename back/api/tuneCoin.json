@@ -3,7 +3,7 @@
     "symbol": "tnc",
     "name": "Tune Coin",
     "image": "http://localhost:3001/api/TNC.svg",
-    "current_price": 67726,
+    "current_price": 1511,
     "market_cap": 1338408026077,
     "market_cap_rank": 51,
     "fully_diluted_valuation": 1421408394121,

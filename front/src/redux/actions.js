@@ -1,12 +1,10 @@
 import axios from 'axios'
-import { GET_ALL_CRYPTOS, GET_BY_NAME } from './action-types'
+import { GET_ALL_CRYPTOS, GET_BY_NAME, NEXT_PAGE, PREV_PAGE, SPECIFIC_PAGE } from './action-types'
 
 export function getAllCryptos() {
   return async function (dispatch) {
     try {
       const response = await axios.get('http://localhost:3001/allCryptos')
-
-      console.log(response.data);
       
       return dispatch({
         type: GET_ALL_CRYPTOS,
@@ -32,5 +30,34 @@ export const getCryptoByName = (name) => {
       console.error(error);
       
     }
+  }
+}
+
+export const nextPage = () => {
+  return function (dispatch, getStage) {
+    const { currentPage } = getStage()
+    dispatch({
+      type: NEXT_PAGE,
+      payload: currentPage + 1
+    })
+  }
+}
+
+export const prevPage = () => {
+  return function (dispatch, getStage) {
+    const { currentPage } = getStage()
+    dispatch({
+      type: PREV_PAGE,
+      payload: currentPage - 1
+    })
+  }
+}
+
+export const specificPage = (page) => {
+  return function (dispatch) {
+    dispatch({
+      type: SPECIFIC_PAGE,
+      payload: page
+    })
   }
 }
