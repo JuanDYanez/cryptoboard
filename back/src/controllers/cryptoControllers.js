@@ -18,11 +18,11 @@ const controllerGetAllCryptos = async () => {
   setInterval(() => {
     
     const priceChange = (Math.random() * 2 - 1) * 100;
-    const marketCapChange = (Math.random() * 2 - 1) * 10000000;
+    const marketCapChange = (Math.random() * 2 - 1) * 100000000;
   
     tuneCoin.current_price = Math.max(1, tuneCoin.current_price + priceChange);
     tuneCoin.market_cap = Math.max(1, tuneCoin.market_cap + marketCapChange);
-  }, 30000);
+  }, 60000);
 
   try {
     const response = await axios.request(options)

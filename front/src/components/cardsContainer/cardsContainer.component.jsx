@@ -20,6 +20,12 @@ export default function CardsContainer () {
   
   useEffect(() => {
     dispatch(getAllCryptos())
+
+    const interval = setInterval(() => {
+      dispatch(getAllCryptos())
+    }, 60000)
+
+    return () => clearInterval(interval)
   }, [dispatch])
 
   return (
@@ -29,7 +35,7 @@ export default function CardsContainer () {
           <CryptoCard crypto={crypto} key={crypto.id} />
         )).slice(firstIndex, lastIndex)}
       </div>
-      <Pag cryptosPerPage={cryptosPerPage}/>
+      <Pag className={s.paginationContainer} cryptosPerPage={cryptosPerPage}/>
     </div>
   )
 }

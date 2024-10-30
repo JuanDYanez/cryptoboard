@@ -10,6 +10,12 @@
   padding-left: 10px;
   margin: 5px;
   color: #333333;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.cardContainer:hover {
+  transform: scale(1.02);
 }
 
 .cardImage {
