@@ -6,6 +6,14 @@
   padding: 20px;
   width: 50%;
   margin-left: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardsContainer {
+  scrollbar-width: none;
+  overflow-y: auto;
+  height: 80vh;
 }
 
 .paginationContainer {

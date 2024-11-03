@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { useDispatch, useSelector } from 'react-redux'
-import { nextPage } from '../../redux/actions';
 import s from './card.module.css'
 
 export default function CryptoCard ({crypto}) {
@@ -9,6 +8,7 @@ export default function CryptoCard ({crypto}) {
   const dispatch = useDispatch();
 
   const {
+    id,
     name,
     symbol,
     image,
@@ -37,12 +37,12 @@ export default function CryptoCard ({crypto}) {
     }
   }
 
-  const onClick = () => {
-    dispatch(nextPage())
+  const onClick = (id) => {
+    console.log(id);
   }
 
   return (
-    <div className={s.cardContainer} onClick={onClick}>
+    <div className={s.cardContainer} onClick={()=> onClick(id)}>
       <div className={s.cardInfo}>
         <img className={s.cardImage} src={image} alt="crypto-image" />
         <div className={s.cardTitles}>
