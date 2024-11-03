@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
+
+import { useDispatch, useSelector } from 'react-redux'
+import { nextPage } from '../../redux/actions';
 import s from './card.module.css'
 
 export default function CryptoCard ({crypto}) {
+
+  const dispatch = useDispatch();
+
   const {
     name,
     symbol,
@@ -31,8 +37,12 @@ export default function CryptoCard ({crypto}) {
     }
   }
 
+  const onClick = () => {
+    dispatch(nextPage())
+  }
+
   return (
-    <div className={s.cardContainer}>
+    <div className={s.cardContainer} onClick={onClick}>
       <div className={s.cardInfo}>
         <img className={s.cardImage} src={image} alt="crypto-image" />
         <div className={s.cardTitles}>
@@ -41,12 +51,14 @@ export default function CryptoCard ({crypto}) {
         </div>
       </div>
       <div className={s.currentPriceData}>
+        <p className={s.description}>Valor Actual</p>
         <p className={s.mainValue}>{roundedCurrentPrice} US$</p>
         <p className={roundedPriceChangePercentage > 0 ? s.percentageGreen : s.percentageRed}>
           {roundedPriceChangePercentage > 0 ? '+'+roundedPriceChangePercentage : roundedPriceChangePercentage}%
         </p>
       </div>
       <div className={s.marketCapData}>
+        <p className={s.description}>Market Cap</p>
         <p className={s.mainValue}>{numberFormat(market_cap)} US$</p>
         <p className={roundedMarketCapPercentage > 0 ? s.percentageGreen : s.percentageRed}>
           {roundedMarketCapPercentage > 0 ? '+'+roundedMarketCapPercentage : roundedMarketCapPercentage}%

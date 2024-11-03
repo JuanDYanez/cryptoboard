@@ -14,7 +14,7 @@ function Pag() {
   const totalCryptos = allCryptos.length;
   const totalPages = totalCryptos / cryptosPerPage;
   
-  const onSpecificPage = (event, value) => {
+  const onSpecificPage = (event, value) => {    
     dispatch(specificPage(value))
   }
 

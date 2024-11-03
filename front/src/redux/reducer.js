@@ -1,4 +1,4 @@
-import {GET_ALL_CRYPTOS, GET_BY_NAME, NEXT_PAGE, PREV_PAGE, SPECIFIC_PAGE} from './action-types'
+import {GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, NEXT_PAGE} from './action-types'
 
 let initialState = {
   allCryptos: [],
@@ -19,21 +19,16 @@ function rootReducer (state = initialState, action) {
         filteredCryptos: action.payload,
         currentPage: 1,
       };
-    case NEXT_PAGE:
-      return {
-        ...state,
-        currentPage: action.payload
-      }
-    case PREV_PAGE:
-      return {
-        ...state,
-        currentPage: action.payload
-      }
     case SPECIFIC_PAGE:
       return {
         ...state,
         currentPage: action.payload
       }
+    case NEXT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
       return state;
     }

@@ -1,17 +1,17 @@
 // import { useState } from 'react'
+import {Routes, Route} from 'react-router-dom'
+
 import './App.css'
-import SideBar from './components/sidebar/sidebar.component'
-import DetailView from './components/detailView/detailView.component'
-import CardsContainer from './components/cardsContainer/cardsContainer.component'
+import Home from './pages/home/home.component'
 
 function App() {
 
   return (
-    <>
-      <SideBar></SideBar>
-      <DetailView></DetailView>
-      <CardsContainer/>
-    </>
+    <div>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+      </Routes>
+    </div>
   )
 }
 

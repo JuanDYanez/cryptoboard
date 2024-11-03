@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_ALL_CRYPTOS, GET_BY_NAME, NEXT_PAGE, PREV_PAGE, SPECIFIC_PAGE } from './action-types'
+import { GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, NEXT_PAGE } from './action-types'
 
 export function getAllCryptos() {
   return async function (dispatch) {
@@ -33,31 +33,21 @@ export const getCryptoByName = (name) => {
   }
 }
 
-export const nextPage = () => {
-  return function (dispatch, getStage) {
-    const { currentPage } = getStage()
-    dispatch({
-      type: NEXT_PAGE,
-      payload: currentPage + 1
-    })
-  }
-}
-
-export const prevPage = () => {
-  return function (dispatch, getStage) {
-    const { currentPage } = getStage()
-    dispatch({
-      type: PREV_PAGE,
-      payload: currentPage - 1
-    })
-  }
-}
-
 export const specificPage = (page) => {
   return function (dispatch) {
     dispatch({
       type: SPECIFIC_PAGE,
       payload: page
     })
+  }
+}
+
+export const nextPage = () => {
+  return function (dispatch, getStage) {
+    const { currentPage } = getStage();
+    dispatch({
+      type: NEXT_PAGE,
+      payload: currentPage + 1
+    });
   }
 }

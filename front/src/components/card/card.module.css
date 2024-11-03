@@ -4,8 +4,8 @@
   justify-content: space-around;
   gap: 10px;
   background-color: white;
-  width: 700px;
-  height: 60px;
+  width: 600px;
+  height: 70px;
   border-radius: 10px;
   padding-left: 10px;
   margin: 5px;
@@ -26,7 +26,7 @@
 }
 
 .cardInfo, h4, p {
-  width: 50%;
+  width: 60%;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -52,6 +52,11 @@
   color: grey
 }
 
+.description {
+  font-size: 10px;
+  color: #bbbbbb;
+  width: 100%;
+}
 .mainValue {
   font-weight: 18px;
   font-weight: bold;
@@ -60,10 +65,11 @@
 }
 
 .currentPriceData, .marketCapData {
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
 }
 
 .percentageGreen {

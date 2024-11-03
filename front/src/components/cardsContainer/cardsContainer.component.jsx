@@ -29,13 +29,13 @@ export default function CardsContainer () {
   }, [dispatch])
 
   return (
-    <div className={s.container}>
+    <div className={s.cardsMainContainer}>
+      <Pag className={s.paginationContainer} cryptosPerPage={cryptosPerPage}/>
       <div className={s.cardsContainer}>
         {allCryptos?.map((crypto) => (
           <CryptoCard crypto={crypto} key={crypto.id} />
         )).slice(firstIndex, lastIndex)}
       </div>
-      <Pag className={s.paginationContainer} cryptosPerPage={cryptosPerPage}/>
     </div>
   )
 }
