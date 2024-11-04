@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, NEXT_PAGE } from './action-types'
+import { GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID } from './action-types'
 
 export function getAllCryptos() {
   return async function (dispatch) {
@@ -42,12 +42,22 @@ export const specificPage = (page) => {
   }
 }
 
-export const nextPage = () => {
-  return function (dispatch, getStage) {
-    const { currentPage } = getStage();
-    dispatch({
-      type: NEXT_PAGE,
-      payload: currentPage + 1
-    });
+export const getCryptoByID = (id) => {
+  
+  return async (dispatch) => {
+    try {
+      const endpoint = `http://localhost:3001/filter/${id}`
+      const response = await axios.get(endpoint)
+
+      console.log(response.data);
+
+      dispatch({
+        type: GET_BY_ID,
+        payload: response.data
+      })
+    } catch (error) {
+      console.error(error);
+      
+    }
   }
 }

@@ -17,6 +17,9 @@ const handlerGetAllCryptos = async (req, res) => {
 const handlerGetCryptoById = async (req, res) => { 
   const { id } = req.params;
 
+  console.log('Este es el id que llega por Handler:', id);
+  
+
   try {
     const response = await controllerGetCryptoById(id); 
     

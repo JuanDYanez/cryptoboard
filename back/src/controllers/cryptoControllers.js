@@ -4,10 +4,11 @@ require("dotenv").config();
 const tuneCoin = require("../../api/tuneCoin.json");
 
 const {API_KEY} = process.env;
-const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x_cg_demo_api_key=${API_KEY}`;
 
 // Controller para pedir las primeras 50 coins
 const controllerGetAllCryptos = async () => {
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&x_cg_demo_api_key=${API_KEY}`;
+  
   const options = {
     method: 'GET',
     url: url+'&per_page=49',
@@ -86,17 +87,17 @@ const controllerGetAllCryptos = async () => {
 
 // Controller para pedir el detalle de una coin por ID
 const controllerGetCryptoById = async (id) => {
+  const url = `https://api.coingecko.com/api/v3/coins/${id}?${API_KEY}`
+  const options = {
+    method: 'GET',
+    url: url,
+    header: {accept: 'application/json'}
+  }
 
   try {
-    const allCryptos = await controllerGetAllCryptos(); 
+    const response = await axios.request(options); 
 
-    const cryptosFound = await allCryptos.find(crypto => crypto.id == id || crypto.symbol == id)
-
-    if (cryptosFound.length === 0) {
-      console.error("No se encontraron cryptos");
-    }
-
-    return cryptosFound
+    return response.data
   } catch (error) {
     throw new Error("No se encontraron cryptos");
   }
