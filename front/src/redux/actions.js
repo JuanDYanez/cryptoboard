@@ -49,8 +49,6 @@ export const getCryptoByID = (id) => {
       const endpoint = `http://localhost:3001/filter/${id}`
       const response = await axios.get(endpoint)
 
-      console.log(response.data);
-
       dispatch({
         type: GET_BY_ID,
         payload: response.data

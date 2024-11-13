@@ -3,8 +3,9 @@ import {GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID} from './action-t
 let initialState = {
   allCryptos: [],
   filteredCryptos: [],
-  detailCrypto: {},
+  detailCrypto: [],
   currentPage: 1,
+  isLoading: false,
 }
 
 function rootReducer (state = initialState, action) {
