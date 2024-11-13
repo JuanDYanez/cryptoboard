@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useDispatch } from 'react-redux'
-import { getCryptoByID } from '../../redux/actions';
+import { getCryptoByID, isLoading } from '../../redux/actions';
 
 import s from './card.module.css'
 
@@ -40,8 +40,8 @@ export default function CryptoCard ({crypto}) {
   }
 
   const onClick = (id) => {
-    console.log(id);
     dispatch(getCryptoByID(id))
+    dispatch(isLoading(true))
   }
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID } from './action-types'
+import { GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID, ISLOADING } from './action-types'
 
 export function getAllCryptos() {
   return async function (dispatch) {
@@ -38,6 +38,15 @@ export const specificPage = (page) => {
     dispatch({
       type: SPECIFIC_PAGE,
       payload: page
+    })
+  }
+}
+
+export const isLoading = (boolean) => {
+  return function (dispatch) {
+    dispatch ({
+      type: ISLOADING,
+      payload: boolean,
     })
   }
 }

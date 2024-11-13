@@ -26,6 +26,10 @@
   align-items: center;
 }
 
+.loadingGif {
+  width: 60px;
+}
+
 h1 {
   color: #333333;
 }

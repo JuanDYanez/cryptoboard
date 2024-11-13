@@ -1,4 +1,4 @@
-import {GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID} from './action-types'
+import {GET_ALL_CRYPTOS, GET_BY_NAME, SPECIFIC_PAGE, GET_BY_ID, ISLOADING} from './action-types'
 
 let initialState = {
   allCryptos: [],
@@ -30,6 +30,11 @@ function rootReducer (state = initialState, action) {
       return {
         ...state,
         detailCrypto: action.payload
+      }
+    case ISLOADING:
+      return {
+        ...state,
+        isLoading: action.payload
       }
     default:
       return state;
